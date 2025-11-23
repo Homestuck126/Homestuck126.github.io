@@ -9,7 +9,7 @@
 
     body {
       font-family: 'Roboto', sans-serif;
-      background: #fdf5e6; /* parchment-like background */
+      background: #fdf5e6;
       margin: 0;
       padding: 0;
       color: #2b1b0b;
@@ -24,47 +24,95 @@
       font-family: 'MedievalSharp', cursive;
     }
 
+    header h1 {
+      margin: 0;
+    }
+
+    header p {
+      margin: 0.5rem 0 0;
+    }
+
+    .toggle-buttons {
+      margin-top: 1rem;
+    }
+
+    .toggle-buttons button {
+      background: #5c2e0a;
+      color: #fdf5e6;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .toggle-buttons button:hover,
+    .toggle-buttons button.active {
+      background: #7a3e10;
+    }
+
     main {
-      background: #fff8e7;
+      perspective: 1200px; /* enable 3D space for flip */
       max-width: 900px;
       margin: 2rem auto;
+    }
+
+    .flip-card {
+      width: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+      position: relative;
+    }
+
+    .flip-card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .screen {
+      backface-visibility: hidden;
+      background: #fff8e7;
       padding: 2rem;
       border-radius: 15px;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
       text-align: left;
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
     }
 
-    h1, h2 {
+    .screen h2 {
       font-family: 'MedievalSharp', cursive;
       color: #4b2e0f;
-      display: flex;
-      align-items: center;
-    }
-
-    h2 {
       margin-top: 2rem;
       border-bottom: 2px solid #4b2e0f;
       padding-bottom: 0.3rem;
       font-size: 1.6rem;
     }
 
-    h2 span.icon {
+    .screen h2 span.icon {
       margin-right: 0.5rem;
       font-size: 1.5rem;
     }
 
-    p, li {
+    .screen p, .screen li {
       line-height: 1.6;
       margin: 0.5rem 0;
     }
 
-    ul {
+    .screen ul {
       list-style: square inside;
       padding-left: 0;
     }
 
-    .section {
+    .screen .section {
       margin-top: 1.5rem;
+    }
+
+    .screen#projectsScreen {
+      transform: rotateY(180deg); /* back side */
     }
 
     footer {
@@ -96,90 +144,120 @@
   <header>
     <h1>Aaron Tam</h1>
     <p>Master of Code | Digital Adventurer in Computer Science</p>
+    <div class="toggle-buttons">
+      <button id="resumeBtn" class="active">Resume</button>
+      <button id="projectsBtn">Projects</button>
+    </div>
   </header>
 
   <main>
-    <section class="section">
-      <h2><span class="icon">✉️</span>Contact & Links</h2>
-      <p>Irvine, CA | 949-385-3238 | aaron08820@gmail.com</p>
-      <p>
-        <a class="button" href="https://linkedin.com/in/AaronTam126" target="_blank">LinkedIn</a>
-        <a class="button" href="https://github.com/Homestuck126" target="_blank">GitHub</a>
-      </p>
-    </section>
+    <div class="flip-card" id="flipCard">
+      <!-- Resume Front -->
+      <div id="resumeScreen" class="screen">
+        <section class="section">
+          <h2><span class="icon">✉️</span>Contact & Links</h2>
+          <p>Irvine, CA | 949-385-3238 | aaron08820@gmail.com</p>
+          <p>
+            <a class="button" href="https://linkedin.com/in/AaronTam126" target="_blank">LinkedIn</a>
+            <a class="button" href="https://github.com/Homestuck126" target="_blank">GitHub</a>
+          </p>
+        </section>
 
-    <section class="section">
-      <h2><span class="icon">📜</span>Education</h2>
-      <ul>
-        <li>University of California, Riverside – Master of Science, Computer Science, GPA: 3.88 (Spring 2025)</li>
-        <li>University of California, Riverside – Bachelor of Science, Computer Science, GPA: 3.86 (Winter 2024)</li>
-      </ul>
-    </section>
+        <section class="section">
+          <h2><span class="icon">📜</span>Education</h2>
+          <ul>
+            <li>University of California, Riverside – Master of Science, Computer Science, GPA: 3.88 (Spring 2025)</li>
+            <li>University of California, Riverside – Bachelor of Science, Computer Science, GPA: 3.86 (Winter 2024)</li>
+          </ul>
+        </section>
 
-    <section class="section">
-      <h2><span class="icon">⚔️</span>Experience</h2>
-      <ul>
-        <li><strong>Graduate Research Assistant | UC Riverside</strong> (Mar 2025 – Sep 2025)
+        <section class="section">
+          <h2><span class="icon">⚔️</span>Experience</h2>
           <ul>
-            <li>Co-authored research paper on Large Language Models (LLMs)</li>
-            <li>Designed orchestration system for AI workload failure recovery (16× faster coldstarts)</li>
-            <li>Reduced LLM weight loading time by 0.9×, improving 2× overall performance</li>
+            <li><strong>Graduate Research Assistant | UC Riverside</strong> (Mar 2025 – Sep 2025)
+              <ul>
+                <li>Co-authored research paper on Large Language Models (LLMs)</li>
+                <li>Designed orchestration system for AI workload failure recovery (16× faster coldstarts)</li>
+                <li>Reduced LLM weight loading time by 0.9×, improving 2× overall performance</li>
+              </ul>
+            </li>
+            <li><strong>Undergraduate Research Assistant | UC Riverside</strong> (Jun 2024 – Sep 2024)
+              <ul>
+                <li>Investigated eBPF kernel contexts and attachment points</li>
+                <li>Coordinated with remote team and prototyped kernel behavior experiments</li>
+              </ul>
+            </li>
+            <li><strong>Software Engineering Intern | International Trust Machines</strong> (Jun 2022 – Dec 2022)
+              <ul>
+                <li>Tested and verified API functionality, reducing support requests by 33%</li>
+                <li>Collaborated remotely via Scrum meetings and Slack</li>
+              </ul>
+            </li>
           </ul>
-        </li>
-        <li><strong>Undergraduate Research Assistant | UC Riverside</strong> (Jun 2024 – Sep 2024)
-          <ul>
-            <li>Investigated eBPF kernel contexts and attachment points</li>
-            <li>Coordinated with remote team and prototyped kernel behavior experiments</li>
-          </ul>
-        </li>
-        <li><strong>Software Engineering Intern | International Trust Machines</strong> (Jun 2022 – Dec 2022)
-          <ul>
-            <li>Tested and verified API functionality, reducing support requests by 33%</li>
-            <li>Collaborated remotely via Scrum meetings and Slack</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
+        </section>
 
-    <section class="section">
-      <h2><span class="icon">🔮</span>Projects</h2>
-      <ul>
-        <li><strong>MOE LLM Failure Resiliency</strong> – C++, Distributed Systems, VLLM
-          <ul>
-            <li>Multi-node inference with custom orchestrator and failure-resiliency</li>
-            <li>HTTP APIs for worker status and automatic failure switchover</li>
-          </ul>
-        </li>
-        <li><strong>Custom Placement Engine</strong> – Python, Docker, Kubernetes, Knative, Prometheus, Istio
-          <ul>
-            <li>Optimized scheduling in Knative clusters with live telemetry</li>
-          </ul>
-        </li>
-        <li><strong>QUIC Multipath Evaluation</strong> – Python, Mininet, Wireshark
-          <ul>
-            <li>Tested Multipath QUIC performance vs TCP with client migration simulations</li>
-          </ul>
-        </li>
-        <li><strong>Gals Press</strong> – Python, Flask, Vue.js
-          <ul>
-            <li>Web app for text analysis with AI sentiment and bias detection</li>
-            <li>1st place “Data and AI in Education” at RoseHack Hackathon</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
+        <section class="section">
+          <h2><span class="icon">🛠️</span>Technical Skills</h2>
+          <p>Languages: Python, Java, C/C++, JavaScript, C#, HTML, Solidity</p>
+          <p>Frameworks & Libraries: React.js, React Native, Vue.js, Unity, OpenGL, libtorch, VLLM, Kubernetes, Knative</p>
+          <p>Technologies: AWS, MySQL, socket programming, HTTP, CMake, Wireshark</p>
+          <p>Developer Tools: Visual Studio, IntelliJ, Android Studio, Google Colab, Trello, Docker</p>
+        </section>
+      </div>
 
-    <section class="section">
-      <h2><span class="icon">🛠️</span>Technical Skills</h2>
-      <p>Languages: Python, Java, C/C++, JavaScript, C#, HTML, Solidity</p>
-      <p>Frameworks & Libraries: React.js, React Native, Vue.js, Unity, OpenGL, libtorch, VLLM, Kubernetes, Knative</p>
-      <p>Technologies: AWS, MySQL, socket programming, HTTP, CMake, Wireshark</p>
-      <p>Developer Tools: Visual Studio, IntelliJ, Android Studio, Google Colab, Trello, Docker</p>
-    </section>
+      <!-- Projects Back -->
+      <div id="projectsScreen" class="screen">
+        <section class="section">
+          <h2><span class="icon">🔮</span>Projects</h2>
+          <ul>
+            <li><strong>MOE LLM Failure Resiliency</strong> – C++, Distributed Systems, VLLM
+              <ul>
+                <li>Multi-node inference with custom orchestrator and failure-resiliency</li>
+                <li>HTTP APIs for worker status and automatic failure switchover</li>
+              </ul>
+            </li>
+            <li><strong>Custom Placement Engine</strong> – Python, Docker, Kubernetes, Knative, Prometheus, Istio
+              <ul>
+                <li>Optimized scheduling in Knative clusters with live telemetry</li>
+              </ul>
+            </li>
+            <li><strong>QUIC Multipath Evaluation</strong> – Python, Mininet, Wireshark
+              <ul>
+                <li>Tested Multipath QUIC performance vs TCP with client migration simulations</li>
+              </ul>
+            </li>
+            <li><strong>Gals Press</strong> – Python, Flask, Vue.js
+              <ul>
+                <li>Web app for text analysis with AI sentiment and bias detection</li>
+                <li>1st place “Data and AI in Education” at RoseHack Hackathon</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2025 Aaron Tam | May your code quests never fail</p>
   </footer>
+
+  <script>
+    const flipCard = document.getElementById('flipCard');
+    const resumeBtn = document.getElementById('resumeBtn');
+    const projectsBtn = document.getElementById('projectsBtn');
+
+    resumeBtn.addEventListener('click', () => {
+      flipCard.classList.remove('flipped');
+      resumeBtn.classList.add('active');
+      projectsBtn.classList.remove('active');
+    });
+
+    projectsBtn.addEventListener('click', () => {
+      flipCard.classList.add('flipped');
+      projectsBtn.classList.add('active');
+      resumeBtn.classList.remove('active');
+    });
+  </script>
 </body>
 </html>
