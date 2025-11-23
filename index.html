@@ -89,6 +89,8 @@
     .flip-card.flipped {
       transform: rotateY(180deg);
     }
+    
+    /* Section headings */
     .screen h2 {
       font-family: 'MedievalSharp', cursive;
       color: #4b2e0f;
@@ -97,22 +99,45 @@
       padding-bottom: 0.3rem;
       font-size: 1.6rem;
     }
-
+    
     .screen h2 span.icon {
       margin-right: 0.5rem;
       font-size: 1.5rem;
     }
-
+    
+    /* Paragraphs and list items */
     .screen p, .screen li {
       line-height: 1.6;
       margin: 0.5rem 0;
     }
-
-    .screen ul {
-      list-style: square inside;
+    
+    /* Top-level lists (no bullets) */
+    .screen > ul {
+      list-style: none;
       padding-left: 0;
+      margin: 0;
     }
-
+    
+    /* Bold text for main items (bigger and on its own line) */
+    .screen > ul > li > strong {
+      font-size: 1.3rem;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    
+    /* Nested lists keep bullets */
+    .screen > ul > li > ul {
+      list-style: square inside;
+      padding-left: 1.2rem;
+      margin-top: 0.3rem;
+    }
+    
+    /* Optional: spacing for nested list items */
+    .screen > ul > li > ul > li {
+      margin: 0.3rem 0;
+    }
+    
+    /* Sections spacing */
     .screen .section {
       margin-top: 1.5rem;
     }
