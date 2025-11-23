@@ -61,33 +61,28 @@
     .flip-card-container {
       position: relative;
       max-width: 900px;
-      margin: 2rem auto;    
-      height: 700px;       
-      perspective: 1000px;  
+      margin: 2rem auto;
+      perspective: 1000px;   /* 3D perspective */
+      display: grid;          /* allows container to grow dynamically */
     }
     
     /* Flip card itself */
     .flip-card {
       width: 100%;
-      height: 100%;
-      position: relative;          /* relative for absolute screens */
+      display: grid;          /* match container's height */
       transform-style: preserve-3d;
       transition: transform 0.8s;
     }
     
     /* Screens (front/back) */
     .screen {
-      position: absolute;          /* overlap perfectly */
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
+      grid-area: 1 / 1 / 2 / 2; /* all screens overlap perfectly */
       backface-visibility: hidden;
       background: #fff8e7;
       border-radius: 15px;
       padding: 2rem;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      overflow: auto;              /* scroll if content overflows */
+      overflow: auto;           /* scroll if content overflows */
     }
     
     /* Flip state */
