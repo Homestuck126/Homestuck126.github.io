@@ -18,4 +18,4 @@ buttons.forEach(btn => {
 });
 
 // Load default tab
-loadTab("resume");
+loadTab("about");
