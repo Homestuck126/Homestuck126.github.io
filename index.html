@@ -111,31 +111,26 @@
       margin: 0.5rem 0;
     }
     
-    /* Remove bullets from all top-level items inside .screen */
-    .screen > ul > li {
-      list-style: none;       /* remove bullet */
-      margin-bottom: 1rem;    /* spacing */
-      font-size: 1.2rem;      /* bigger font for main item text */
-    }
-    
-    /* Bold portion inside the li gets slightly larger and block display */
-    .screen > ul > li > strong {
-      font-size: 1.3rem;      /* bigger than the rest */
-      display: block;          /* starts on its own line */
+    /* Main items (roles/projects) */
+    .role {
+      font-size: 1.3rem;
+      font-weight: bold;
       margin-bottom: 0.3rem;
     }
     
-    /* Nested lists keep bullets */
-    .screen > ul > li > ul {
-      list-style: square inside;
-      padding-left: 1.2rem;
-      margin-top: 0.3rem;
+    /* Tasks / subitems */
+    .tasks div {
+      margin-left: 1.2rem;
+      margin-bottom: 0.3rem;
+      font-size: 1rem;
     }
     
-    /* Optional: spacing for nested items */
-    .screen > ul > li > ul > li {
-      margin: 0.3rem 0;
+    /* Generic list-item for education/skills */
+    .list-item {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
     }
+
     
     /* Sections spacing */
     .screen .section {
@@ -181,95 +176,110 @@
     </div>
   </header>
 
-  <main>
-      <div class="flip-card-container">
-        <div class="flip-card" id="flipCard">
-          <!-- Resume Front -->
-          <div id="resumeScreen" class="screen">
-              <section class="section">
-                <h2><span class="icon">✉️</span>Contact & Links</h2>
-                <p>Irvine, CA | 949-385-3238 | aaron08820@gmail.com</p>
-                <p>
-                  <a class="button" href="https://linkedin.com/in/AaronTam126" target="_blank">LinkedIn</a>
-                  <a class="button" href="https://github.com/Homestuck126" target="_blank">GitHub</a>
-                </p>
-              </section>
-  
-          <section class="section">
-            <h2><span class="icon">📜</span>Education</h2>
-            <ul>
-              <li>University of California, Riverside – Master of Science, Computer Science, GPA: 3.88 (Spring 2025)</li>
-              <li>University of California, Riverside – Bachelor of Science, Computer Science, GPA: 3.86 (Winter 2024)</li>
-            </ul>
-          </section>
-  
-          <section class="section">
-            <h2><span class="icon">⚔️</span>Experience</h2>
-            <ul>
-              <li><strong>Graduate Research Assistant | UC Riverside</strong> (Mar 2025 – Sep 2025)
-                <ul>
-                  <li>Co-authored research paper on Large Language Models (LLMs)</li>
-                  <li>Designed orchestration system for AI workload failure recovery (16× faster coldstarts)</li>
-                  <li>Reduced LLM weight loading time by 0.9×, improving 2× overall performance</li>
-                </ul>
-              </li>
-              <li><strong>Undergraduate Research Assistant | UC Riverside</strong> (Jun 2024 – Sep 2024)
-                <ul>
-                  <li>Investigated eBPF kernel contexts and attachment points</li>
-                  <li>Coordinated with remote team and prototyped kernel behavior experiments</li>
-                </ul>
-              </li>
-              <li><strong>Software Engineering Intern | International Trust Machines</strong> (Jun 2022 – Dec 2022)
-                <ul>
-                  <li>Tested and verified API functionality, reducing support requests by 33%</li>
-                  <li>Collaborated remotely via Scrum meetings and Slack</li>
-                </ul>
-              </li>
-            </ul>
-          </section>
-  
-          <section class="section">
-            <h2><span class="icon">🛠️</span>Technical Skills</h2>
-            <p>Languages: Python, Java, C/C++, JavaScript, C#, HTML, Solidity</p>
-            <p>Frameworks & Libraries: React.js, React Native, Vue.js, Unity, OpenGL, libtorch, VLLM, Kubernetes, Knative</p>
-            <p>Technologies: AWS, MySQL, socket programming, HTTP, CMake, Wireshark</p>
-            <p>Developer Tools: Visual Studio, IntelliJ, Android Studio, Google Colab, Trello, Docker</p>
-          </section>
-        </div>
-  
-        <!-- Projects Back -->
-        <div id="projectsScreen" class="screen">
-          <section class="section">
-            <h2><span class="icon">🔮</span>Projects</h2>
-            <ul>
-              <li><strong>MOE LLM Failure Resiliency</strong> – C++, Distributed Systems, VLLM
-                <ul>
-                  <li>Multi-node inference with custom orchestrator and failure-resiliency</li>
-                  <li>HTTP APIs for worker status and automatic failure switchover</li>
-                </ul>
-              </li>
-              <li><strong>Custom Placement Engine</strong> – Python, Docker, Kubernetes, Knative, Prometheus, Istio
-                <ul>
-                  <li>Optimized scheduling in Knative clusters with live telemetry</li>
-                </ul>
-              </li>
-              <li><strong>QUIC Multipath Evaluation</strong> – Python, Mininet, Wireshark
-                <ul>
-                  <li>Tested Multipath QUIC performance vs TCP with client migration simulations</li>
-                </ul>
-              </li>
-              <li><strong>Gals Press</strong> – Python, Flask, Vue.js
-                <ul>
-                  <li>Web app for text analysis with AI sentiment and bias detection</li>
-                  <li>1st place “Data and AI in Education” at RoseHack Hackathon</li>
-                </ul>
-              </li>
-            </ul>
-          </section>
-        </div>
+<main>
+  <div class="flip-card-container">
+    <div class="flip-card" id="flipCard">
+      <!-- Resume Front -->
+      <div id="resumeScreen" class="screen">
+
+        <section class="section">
+          <h2><span class="icon">✉️</span>Contact & Links</h2>
+          <p>Irvine, CA | 949-385-3238 | aaron08820@gmail.com</p>
+          <p>
+            <a class="button" href="https://linkedin.com/in/AaronTam126" target="_blank">LinkedIn</a>
+            <a class="button" href="https://github.com/Homestuck126" target="_blank">GitHub</a>
+          </p>
+        </section>
+
+        <section class="section">
+          <h2><span class="icon">📜</span>Education</h2>
+          <div class="list-item">University of California, Riverside – Master of Science, Computer Science, GPA: 3.88 (Spring 2025)</div>
+          <div class="list-item">University of California, Riverside – Bachelor of Science, Computer Science, GPA: 3.86 (Winter 2024)</div>
+        </section>
+
+        <section class="section">
+          <h2><span class="icon">⚔️</span>Experience</h2>
+
+          <div class="experience-item">
+            <div class="role"><strong>Graduate Research Assistant | UC Riverside</strong> (Mar 2025 – Sep 2025)</div>
+            <div class="tasks">
+              <div>Co-authored research paper on Large Language Models (LLMs)</div>
+              <div>Designed orchestration system for AI workload failure recovery (16× faster coldstarts)</div>
+              <div>Reduced LLM weight loading time by 0.9×, improving 2× overall performance</div>
+            </div>
+          </div>
+
+          <div class="experience-item">
+            <div class="role"><strong>Undergraduate Research Assistant | UC Riverside</strong> (Jun 2024 – Sep 2024)</div>
+            <div class="tasks">
+              <div>Investigated eBPF kernel contexts and attachment points</div>
+              <div>Coordinated with remote team and prototyped kernel behavior experiments</div>
+            </div>
+          </div>
+
+          <div class="experience-item">
+            <div class="role"><strong>Software Engineering Intern | International Trust Machines</strong> (Jun 2022 – Dec 2022)</div>
+            <div class="tasks">
+              <div>Tested and verified API functionality, reducing support requests by 33%</div>
+              <div>Collaborated remotely via Scrum meetings and Slack</div>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="section">
+          <h2><span class="icon">🛠️</span>Technical Skills</h2>
+          <div class="list-item">Languages: Python, Java, C/C++, JavaScript, C#, HTML, Solidity</div>
+          <div class="list-item">Frameworks & Libraries: React.js, React Native, Vue.js, Unity, OpenGL, libtorch, VLLM, Kubernetes, Knative</div>
+          <div class="list-item">Technologies: AWS, MySQL, socket programming, HTTP, CMake, Wireshark</div>
+          <div class="list-item">Developer Tools: Visual Studio, IntelliJ, Android Studio, Google Colab, Trello, Docker</div>
+        </section>
+
+      </div>
+
+      <!-- Projects Back -->
+      <div id="projectsScreen" class="screen">
+
+        <section class="section">
+          <h2><span class="icon">🔮</span>Projects</h2>
+
+          <div class="project-item">
+            <div class="role"><strong>MOE LLM Failure Resiliency</strong> – C++, Distributed Systems, VLLM</div>
+            <div class="tasks">
+              <div>Multi-node inference with custom orchestrator and failure-resiliency</div>
+              <div>HTTP APIs for worker status and automatic failure switchover</div>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="role"><strong>Custom Placement Engine</strong> – Python, Docker, Kubernetes, Knative, Prometheus, Istio</div>
+            <div class="tasks">
+              <div>Optimized scheduling in Knative clusters with live telemetry</div>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="role"><strong>QUIC Multipath Evaluation</strong> – Python, Mininet, Wireshark</div>
+            <div class="tasks">
+              <div>Tested Multipath QUIC performance vs TCP with client migration simulations</div>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="role"><strong>Gals Press</strong> – Python, Flask, Vue.js</div>
+            <div class="tasks">
+              <div>Web app for text analysis with AI sentiment and bias detection</div>
+              <div>1st place “Data and AI in Education” at RoseHack Hackathon</div>
+            </div>
+          </div>
+
+        </section>
+
       </div>
     </div>
-  </main>
+  </div>
+</main>
+
 
   <footer>
     <p>&copy; 2025 Aaron Tam | May your code quests never fail</p>
